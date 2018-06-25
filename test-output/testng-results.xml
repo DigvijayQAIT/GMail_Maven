@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="6750" started-at="2018-06-25T13:10:14Z" finished-at="2018-06-25T13:10:20Z">
+  <suite name="Default suite" duration-ms="31347" started-at="2018-06-25T20:31:28Z" finished-at="2018-06-25T20:31:59Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="6750" started-at="2018-06-25T13:10:14Z" finished-at="2018-06-25T13:10:20Z">
+    <test name="Default test" duration-ms="31347" started-at="2018-06-25T20:31:28Z" finished-at="2018-06-25T20:31:59Z">
       <class name="testClasses.GMailTest">
-        <test-method status="PASS" signature="initVars()[pri:0, instance:testClasses.GMailTest@6f7fd0e6]" name="initVars" is-config="true" duration-ms="1990" started-at="2018-06-25T13:10:14Z" finished-at="2018-06-25T13:10:16Z">
+        <test-method status="PASS" signature="initVars()[pri:0, instance:testClasses.GMailTest@ae45eb6]" name="initVars" is-config="true" duration-ms="4686" started-at="2018-06-25T20:31:28Z" finished-at="2018-06-25T20:31:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initVars -->
-        <test-method status="PASS" signature="Step01_Launch_LoginPage()[pri:0, instance:testClasses.GMailTest@6f7fd0e6]" name="Step01_Launch_LoginPage" duration-ms="4539" started-at="2018-06-25T13:10:16Z" finished-at="2018-06-25T13:10:20Z">
+        <test-method status="PASS" signature="Step01_Launch_LoginPage()[pri:0, instance:testClasses.GMailTest@ae45eb6]" name="Step01_Launch_LoginPage" duration-ms="24251" started-at="2018-06-25T20:31:33Z" finished-at="2018-06-25T20:31:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Step01_Launch_LoginPage -->
-        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:testClasses.GMailTest@6f7fd0e6]" name="closeBrowser" is-config="true" duration-ms="182" started-at="2018-06-25T13:10:20Z" finished-at="2018-06-25T13:10:20Z">
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:testClasses.GMailTest@ae45eb6]" name="closeBrowser" is-config="true" duration-ms="2366" started-at="2018-06-25T20:31:57Z" finished-at="2018-06-25T20:31:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
