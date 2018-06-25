@@ -8,6 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+
+/*
+ * @author Digvijay
+ */
+
+
 public class LoginPageActions {
 	
 	WebDriver driver;
@@ -31,7 +37,9 @@ public class LoginPageActions {
 
 	public void sendEmailAndClickNext() {
 		js.executeScript("document.getElementById('identifierId').value='vj.vns1707';");
-		js.executeScript("document.getElementById('identifierNext').click();");
+//		js.executeScript("document.getElementById('identifierNext').click();");
+		WebElement emailNext = (WebElement) js.executeScript("return document.getElementById('identifierNext')");
+		emailNext.click();
 		System.out.println("User entered email and clicked next");
 	}
 
