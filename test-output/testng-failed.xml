@@ -5,8 +5,8 @@
     <classes>
       <class name="testClasses.GMailTest">
         <methods>
+          <include name="Step02_Launch_MailPage"/>
           <include name="initVars"/>
-          <include name="Step01_Launch_LoginPage"/>
           <include name="closeBrowser"/>
         </methods>
       </class> <!-- testClasses.GMailTest -->

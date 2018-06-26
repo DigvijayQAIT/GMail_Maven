@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 /*
@@ -15,9 +13,10 @@ import org.testng.Assert;
 public class LoginPageActions {
 
 	private WebDriver driver;
-	private JavascriptExecutor js;
+	private JavascriptExecutor executor;
 	private WebElement emailField, emailNext, passwordField, passwordNext, emailHeading, passwordHeading;
 	private String email, password, emailHeadingText, passwordHeadingText;
+	private WaitClass waitObj;
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -29,7 +28,8 @@ public class LoginPageActions {
 
 	public LoginPageActions(WebDriver driver) {
 		this.driver = driver;
-		js = (JavascriptExecutor) this.driver;
+		executor = (JavascriptExecutor) this.driver;
+		waitObj = new WaitClass(driver, 5);
 	}
 
 	public void launchLoginPage(String string) {
@@ -38,7 +38,7 @@ public class LoginPageActions {
 	}
 
 	public void verifyLoginPageLaunched() {
-		emailHeading = (WebElement) js.executeScript("return document.getElementById(\"headingText\");");
+		emailHeading = (WebElement) executor.executeScript("return document.getElementById(\"headingText\");");
 		emailHeadingText = emailHeading.getText();
 		WebElement logo = driver.findElement(By.xpath("//div[@id = 'logo']"));
 		Assert.assertTrue(logo.isDisplayed());
@@ -47,9 +47,9 @@ public class LoginPageActions {
 
 	public void sendEmailAndClickNext(String userEmail) {
 		setEmail(userEmail);
-		emailField = (WebElement) js.executeScript("return document.getElementById('identifierId');");
+		emailField = (WebElement) executor.executeScript("return document.getElementById('identifierId');");
 		emailField.sendKeys(userEmail);
-		emailNext = (WebElement) js.executeScript("return document.getElementById('identifierNext')");
+		emailNext = (WebElement) executor.executeScript("return document.getElementById('identifierNext')");
 		emailNext.click();
 		System.out.println("User entered email and clicked next");
 	}
@@ -59,9 +59,8 @@ public class LoginPageActions {
 		Assert.assertEquals(this.email, email);
 		System.out.println("Email entered - Verified");
 
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text() = 'Forgot password?']")));
-		passwordHeading = (WebElement) js.executeScript("return document.getElementById(\"headingText\");");
+		waitObj.waitOnXpath("//span[text() = 'Forgot password?']");
+		passwordHeading = (WebElement) executor.executeScript("return document.getElementById(\"headingText\");");
 		passwordHeadingText = passwordHeading.getText();
 		Assert.assertNotEquals(emailHeadingText, passwordHeadingText);
 		System.out.println("Next Button Clicked");
@@ -70,11 +69,10 @@ public class LoginPageActions {
 
 	public void sendPasswordAndLogin(String userPassword) {
 		setPassword(userPassword);
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='password']")));
-		passwordField = (WebElement) js.executeScript("return document.querySelector('input[type = \"password\"]');");
+		waitObj.waitOnXpath("//input[@type='password']");
+		passwordField = (WebElement) executor.executeScript("return document.querySelector('input[type = \"password\"]');");
 		passwordField.sendKeys(userPassword);
-		passwordNext = (WebElement) js.executeScript("return document.getElementById('passwordNext')");
+		passwordNext = (WebElement) executor.executeScript("return document.getElementById('passwordNext')");
 		passwordNext.click();
 		System.out.println("User entered password and clicked next");
 	}
@@ -84,8 +82,7 @@ public class LoginPageActions {
 		Assert.assertEquals(this.password, password);
 		System.out.println("Password entered - Verified");
 
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class = 'gb_1a']")));
+		waitObj.waitOnXpath("//img[@class = 'gb_1a']");
 		String actualURL = driver.getCurrentUrl();
 		Assert.assertEquals(actualURL, expectedURL);
 		System.out.println("User Logined");

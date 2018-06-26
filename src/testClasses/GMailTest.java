@@ -1,4 +1,4 @@
-package testClasses;
+ 	package testClasses;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,16 +7,19 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import actionClasses.LoginPageActions;
+import actionClasses.MailPageActions;
 
 public class GMailTest {
 
 	WebDriver driver;
 	LoginPageActions loginPage;
+	MailPageActions mailPage;
 
 	@BeforeClass
 	public void initVars() {
 		driver = new ChromeDriver();
 		loginPage = new LoginPageActions(driver);
+		mailPage = new MailPageActions(driver);
 	}
 
 	@Test
@@ -27,6 +30,14 @@ public class GMailTest {
 		loginPage.verifyEmailEnteredAndNextClicked();
 		loginPage.sendPasswordAndLogin("myCROWsoft@1831");
 		loginPage.verifyPasswordEnteredAndUserLogined("https://mail.google.com/mail/u/0/#inbox");
+	}
+	
+	@Test
+	public void Step02_Launch_MailPage() {
+		mailPage.closeUpcomingOption();
+		mailPage.unreadEmailCount();
+		mailPage.openAnUnreadEmailIrrespectiveOfThePage();
+		mailPage.unreadEmailCount();
 	}
 
 	@AfterClass
