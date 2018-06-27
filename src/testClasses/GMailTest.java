@@ -26,9 +26,9 @@ public class GMailTest {
 	public void Step01_Launch_LoginPage() {
 		loginPage.launchLoginPage("https://mail.google.com");
 		loginPage.verifyLoginPageLaunched();
-		loginPage.sendEmailAndClickNext("vj.vns1707");
+		loginPage.sendEmailAndClickNext("ENTER USERNAME");
 		loginPage.verifyEmailEnteredAndNextClicked();
-		loginPage.sendPasswordAndLogin("myCROWsoft@1831");
+		loginPage.sendPasswordAndLogin("ENTER PASSWORD");
 		loginPage.verifyPasswordEnteredAndUserLogined("https://mail.google.com/mail/u/0/#inbox");
 	}
 	
