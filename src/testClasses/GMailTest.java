@@ -32,12 +32,13 @@ public class GMailTest {
 		loginPage.verifyPasswordEnteredAndUserLogined("https://mail.google.com/mail/u/0/#inbox");
 	}
 	
-	@Test
-	public void Step02_Launch_MailPage() {
+	@Test(dependsOnMethods = {"Step01_Launch_LoginPage"})
+	public void Step02_Launch_MailPage() throws InterruptedException {
 		mailPage.closeUpcomingOption();
-		mailPage.unreadEmailCount();
+		int beforeOpeningMail = mailPage.unreadEmailCount();
 		mailPage.openAnUnreadEmailIrrespectiveOfThePage();
-		mailPage.unreadEmailCount();
+		int afterOpeningMail = mailPage.unreadEmailCount();
+		mailPage.verifyEmailCountChanges(beforeOpeningMail, afterOpeningMail);
 	}
 
 	@AfterClass
